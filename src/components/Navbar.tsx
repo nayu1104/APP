@@ -74,25 +74,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Center Tabs */}
-        <nav className="flex items-center gap-1 rounded-xl bg-neutral-900/90 p-1 border border-neutral-800 text-xs font-medium">
+        {/* Center Tabs (visible on medium screens and up) */}
+        <nav className="hidden md:flex items-center gap-1 rounded-xl bg-neutral-900/90 p-1 border border-neutral-800 text-xs font-medium">
           <button
             id="nav-tab-focus"
             onClick={() => onSelectTab('focus')}
-            className={`flex items-center gap-1.5 rounded-lg px-2.5 sm:px-3 py-1.5 transition-all ${
+            className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition-all ${
               currentTab === 'focus'
                 ? 'bg-amber-500 text-neutral-950 font-semibold shadow-sm'
                 : 'text-neutral-400 hover:text-white hover:bg-neutral-800/60'
             }`}
           >
             <Target className="h-3.5 w-3.5" />
-            <span className="hidden xs:inline">Today's Focus</span>
-            <span className="xs:hidden">Focus</span>
+            <span>Today's Focus</span>
           </button>
           <button
             id="nav-tab-pipeline"
             onClick={() => onSelectTab('pipeline')}
-            className={`flex items-center gap-1.5 rounded-lg px-2.5 sm:px-3 py-1.5 transition-all ${
+            className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition-all ${
               currentTab === 'pipeline'
                 ? 'bg-amber-500 text-neutral-950 font-semibold shadow-sm'
                 : 'text-neutral-400 hover:text-white hover:bg-neutral-800/60'
@@ -103,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="nav-tab-journal"
             onClick={() => onSelectTab('journal')}
-            className={`flex items-center gap-1.5 rounded-lg px-2.5 sm:px-3 py-1.5 transition-all ${
+            className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition-all ${
               currentTab === 'journal'
                 ? 'bg-amber-500 text-neutral-950 font-semibold shadow-sm'
                 : 'text-neutral-400 hover:text-white hover:bg-neutral-800/60'
@@ -118,10 +117,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Streak pill */}
           <div
             title="Consecutive days with exactly ONE logged commitment"
-            className="flex items-center gap-1 rounded-lg bg-neutral-900 border border-neutral-800 px-2 py-1 text-xs font-mono text-amber-400"
+            className="flex items-center gap-1 rounded-lg bg-neutral-900 border border-neutral-800 px-2 sm:px-2.5 py-1.5 text-xs font-mono text-amber-400"
           >
-            <Zap className="h-3.5 w-3.5 fill-amber-400/20 text-amber-400" />
-            <span>{streak}d</span>
+            <Zap className="h-3.5 w-3.5 fill-amber-400/20 text-amber-400 shrink-0" />
+            <span className="font-bold">{streak}d</span>
           </div>
 
           {/* Shield Score pill */}
@@ -129,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             id="btn-open-shield"
             onClick={onOpenShield}
             title="Shield Score: Streak Defense System. Click to view protection details."
-            className={`flex items-center gap-1.5 rounded-lg border px-2 sm:px-2.5 py-1 text-xs font-mono font-semibold transition-all hover:scale-105 ${
+            className={`flex items-center gap-1 rounded-lg border px-2 sm:px-2.5 py-1.5 text-xs font-mono font-semibold transition-all hover:scale-105 min-h-[36px] ${
               isHealthy
                 ? 'bg-emerald-950/40 border-emerald-500/30 text-emerald-400 hover:bg-emerald-950/70'
                 : isVulnerable
@@ -138,21 +137,21 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             {isHealthy ? (
-              <ShieldCheck className="h-3.5 w-3.5" />
+              <ShieldCheck className="h-3.5 w-3.5 shrink-0" />
             ) : isVulnerable ? (
-              <Shield className="h-3.5 w-3.5" />
+              <Shield className="h-3.5 w-3.5 shrink-0" />
             ) : (
-              <ShieldAlert className="h-3.5 w-3.5" />
+              <ShieldAlert className="h-3.5 w-3.5 shrink-0" />
             )}
             <span>{scoreRounded}</span>
-            <span className="hidden md:inline text-[10px] uppercase opacity-75">SHIELD</span>
+            <span className="hidden lg:inline text-[10px] uppercase opacity-75">SHIELD</span>
           </button>
 
-          {/* Add Goal Button */}
+          {/* Add Goal Button (Desktop / Tablet) */}
           <button
             id="btn-add-task-intake"
             onClick={onOpenIntake}
-            className="hidden sm:flex items-center gap-1 rounded-xl bg-neutral-100 px-2.5 py-1.5 text-xs font-semibold text-neutral-900 transition-all hover:bg-white active:scale-95 shadow-sm"
+            className="hidden md:flex items-center gap-1 rounded-xl bg-neutral-100 px-3 py-1.5 text-xs font-semibold text-neutral-900 transition-all hover:bg-white active:scale-95 shadow-sm min-h-[36px]"
           >
             <Plus className="h-3.5 w-3.5 stroke-[2.5]" />
             <span>Add Goal</span>
@@ -162,10 +161,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="btn-open-account"
             onClick={onOpenAccount}
-            className="flex items-center gap-1.5 rounded-lg border border-neutral-800 bg-neutral-900 px-2 py-1 text-xs font-mono text-neutral-300 hover:border-amber-500/50 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 rounded-lg border border-neutral-800 bg-neutral-900 px-2 sm:px-2.5 py-1.5 text-xs font-mono text-neutral-300 hover:border-amber-500/50 hover:text-white transition-colors min-h-[36px]"
             title="Account & Multi-Device Sync (Email & Passcode)"
           >
-            <User className="h-3.5 w-3.5 text-amber-400" />
+            <User className="h-3.5 w-3.5 text-amber-400 shrink-0" />
             <span className="hidden xl:inline truncate max-w-[110px]">
               {currentUser?.display_name || 'Account'}
             </span>
@@ -175,10 +174,67 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="btn-open-settings"
             onClick={onOpenSettings}
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900 text-neutral-400 transition-colors hover:border-neutral-700 hover:text-white"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900 text-neutral-400 transition-colors hover:border-neutral-700 hover:text-white"
             title="Settings & Daily Time Budget"
           >
             <Settings className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Native Bottom Navigation Bar (< md screens) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-neutral-950/95 backdrop-blur-xl border-t border-neutral-800/90 px-2 py-1.5 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-2xl">
+        <div className="flex items-center justify-around gap-1 max-w-md mx-auto">
+          {/* Focus Tab */}
+          <button
+            id="mobile-nav-focus"
+            onClick={() => onSelectTab('focus')}
+            className={`flex flex-col items-center justify-center flex-1 py-1.5 px-2 rounded-xl transition-all min-h-[46px] ${
+              currentTab === 'focus'
+                ? 'text-amber-400 bg-amber-500/10 font-bold'
+                : 'text-neutral-400 hover:text-white'
+            }`}
+          >
+            <Target className="h-4 w-4" />
+            <span className="text-[10px] mt-0.5 tracking-tight">Today</span>
+          </button>
+
+          {/* Pipeline Tab */}
+          <button
+            id="mobile-nav-pipeline"
+            onClick={() => onSelectTab('pipeline')}
+            className={`flex flex-col items-center justify-center flex-1 py-1.5 px-2 rounded-xl transition-all min-h-[46px] ${
+              currentTab === 'pipeline'
+                ? 'text-amber-400 bg-amber-500/10 font-bold'
+                : 'text-neutral-400 hover:text-white'
+            }`}
+          >
+            <Clock className="h-4 w-4" />
+            <span className="text-[10px] mt-0.5 tracking-tight">Pipeline</span>
+          </button>
+
+          {/* Quick Add Goal Action Button */}
+          <button
+            id="mobile-nav-add"
+            onClick={onOpenIntake}
+            className="flex flex-col items-center justify-center px-3 py-1.5 rounded-xl bg-amber-500 text-neutral-950 font-extrabold shadow-md active:scale-95 transition-transform min-h-[46px]"
+          >
+            <Plus className="h-4 w-4 stroke-[3]" />
+            <span className="text-[10px] mt-0.5">New</span>
+          </button>
+
+          {/* Journal Tab */}
+          <button
+            id="mobile-nav-journal"
+            onClick={() => onSelectTab('journal')}
+            className={`flex flex-col items-center justify-center flex-1 py-1.5 px-2 rounded-xl transition-all min-h-[46px] ${
+              currentTab === 'journal'
+                ? 'text-amber-400 bg-amber-500/10 font-bold'
+                : 'text-neutral-400 hover:text-white'
+            }`}
+          >
+            <Zap className="h-4 w-4" />
+            <span className="text-[10px] mt-0.5 tracking-tight">Journal</span>
           </button>
         </div>
       </div>

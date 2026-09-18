@@ -28,12 +28,12 @@ export const ShieldModal: React.FC<ShieldModalProps> = ({
   const scoreAfterMiss = Math.max(0, Math.round((score - penalty) * 10) / 10);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full max-w-lg rounded-2xl border border-neutral-800 bg-neutral-900 p-6 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-sm overflow-y-auto animate-in fade-in duration-200">
+      <div className="my-auto w-full max-w-lg max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-2xl border border-neutral-800 bg-neutral-900 p-5 sm:p-6 shadow-2xl">
         {/* Header */}
         <div className="flex items-start justify-between border-b border-neutral-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className={`flex h-10 w-10 items-center justify-center rounded-xl border ${
+            <div className={`flex h-10 w-10 items-center justify-center rounded-xl border shrink-0 ${
               isHealthy
                 ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
                 : isVulnerable
@@ -52,12 +52,12 @@ export const ShieldModal: React.FC<ShieldModalProps> = ({
               <span className="text-[11px] font-mono uppercase tracking-wider text-amber-400 font-semibold">
                 Streak Defense System
               </span>
-              <h2 className="text-xl font-bold text-white">Shield Score & Protection</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-white">Shield Score & Protection</h2>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-neutral-400 hover:bg-neutral-800 hover:text-white transition-colors"
+            className="rounded-lg p-2 text-neutral-400 hover:bg-neutral-800 hover:text-white transition-colors min-h-[40px] min-w-[40px] flex items-center justify-center"
           >
             <X className="h-5 w-5" />
           </button>

@@ -123,9 +123,9 @@ export const TodayFocusView: React.FC<TodayFocusViewProps> = ({
             Daily Focus Complete
           </h1>
 
-          <div className="mt-4 rounded-2xl border border-neutral-800/80 bg-neutral-950/80 p-5">
-            <div className="flex items-center justify-between text-xs font-mono text-neutral-400 mb-1">
-              <div className="flex items-center gap-2">
+          <div className="mt-4 rounded-2xl border border-neutral-800/80 bg-neutral-950/80 p-4 sm:p-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-neutral-400 mb-1">
+              <div className="flex flex-wrap items-center gap-2">
                 <span>SESSION LOGGED</span>
                 {isMinimumTimeSession ? (
                   <span className="rounded bg-amber-500/20 border border-amber-500/30 px-2 py-0.5 text-[10px] text-amber-300 font-bold">
@@ -137,7 +137,7 @@ export const TodayFocusView: React.FC<TodayFocusViewProps> = ({
                   </span>
                 )}
               </div>
-              <span className="text-amber-400">{loggedEntry.date}</span>
+              <span className="text-amber-400 font-bold">{loggedEntry.date}</span>
             </div>
             <div className="text-lg sm:text-xl font-bold text-white">
               {loggedEntry.task_name}
@@ -352,23 +352,23 @@ export const TodayFocusView: React.FC<TodayFocusViewProps> = ({
             <button
               id="btn-log-minimum-time"
               onClick={() => onOpenLogModal(committedTask, true)}
-              className="w-full flex items-center justify-between rounded-2xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-left hover:border-amber-500/60 hover:bg-amber-500/15 transition-all group"
+              className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 rounded-2xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-left hover:border-amber-500/60 hover:bg-amber-500/15 transition-all group min-h-[44px]"
             >
-              <div className="flex items-center gap-2.5">
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400 group-hover:bg-amber-500 group-hover:text-neutral-950 transition-colors">
+              <div className="flex items-start sm:items-center gap-2.5">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400 group-hover:bg-amber-500 group-hover:text-neutral-950 transition-colors mt-0.5 sm:mt-0">
                   <Zap className="h-4 w-4" />
                 </div>
                 <div>
                   <div className="text-xs font-bold text-amber-300">
                     Can't do {standardMinutes} min today? Do Minimum Time (5 min)
                   </div>
-                  <div className="text-[11px] font-mono text-neutral-400">
+                  <div className="text-[11px] font-mono text-neutral-400 mt-0.5">
                     Emergency fallback: keeps your streak alive & earns +10 Shield points
                   </div>
                 </div>
               </div>
 
-              <span className="text-xs font-mono font-bold text-amber-400 shrink-0 ml-2">
+              <span className="text-xs font-mono font-bold text-amber-400 shrink-0 self-end sm:self-auto mt-1 sm:mt-0">
                 Log 5 min →
               </span>
             </button>
@@ -377,7 +377,7 @@ export const TodayFocusView: React.FC<TodayFocusViewProps> = ({
               <span>Only one task per calendar day.</span>
               <button
                 onClick={() => setShowSwitchConfirm(!showSwitchConfirm)}
-                className="text-neutral-500 hover:text-neutral-300 transition-colors"
+                className="text-neutral-500 hover:text-neutral-300 transition-colors py-1 px-2"
               >
                 Switch Focus Goal
               </button>
@@ -394,16 +394,16 @@ export const TodayFocusView: React.FC<TodayFocusViewProps> = ({
                   <p>
                     Radical single-tasking works because you refuse to scatter your free time. Switching tasks mid-day causes cognitive fragmentation.
                   </p>
-                  <div className="pt-2 flex items-center gap-2">
+                  <div className="pt-2 flex flex-wrap items-center gap-2">
                     <button
                       onClick={onGoToPipeline}
-                      className="rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-mono px-3 py-1.5 text-xs font-bold"
+                      className="rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-mono px-3 py-2 text-xs font-bold min-h-[38px]"
                     >
                       I Understand, Select Different Task
                     </button>
                     <button
                       onClick={() => setShowSwitchConfirm(false)}
-                      className="text-neutral-400 hover:text-white font-mono px-2 py-1 text-xs"
+                      className="text-neutral-400 hover:text-white font-mono px-2 py-2 text-xs min-h-[38px]"
                     >
                       Keep Current Commitment
                     </button>
@@ -421,24 +421,24 @@ export const TodayFocusView: React.FC<TodayFocusViewProps> = ({
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       {/* Shield Alert Header */}
-      <div className="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-4 flex items-center justify-between">
+      <div className="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400">
             <Shield className="h-4 w-4" />
           </div>
           <div>
-            <div className="text-xs font-bold text-white flex items-center gap-1.5">
+            <div className="text-xs font-bold text-white flex flex-wrap items-center gap-1.5">
               <span>Daily Shield Defense Active</span>
               <span className="text-[11px] font-mono text-amber-400">({Math.round(shieldScore)} pts)</span>
             </div>
-            <div className="text-[11px] font-mono text-neutral-400">
+            <div className="text-[11px] font-mono text-neutral-400 mt-0.5">
               Complete your task (or 5 min Minimum Time if busy) to keep your streak alive!
             </div>
           </div>
         </div>
         <button
           onClick={onOpenShield}
-          className="rounded-lg border border-neutral-800 px-2.5 py-1 text-xs font-mono text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors"
+          className="self-end sm:self-auto rounded-lg border border-neutral-800 px-3 py-1.5 text-xs font-mono text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors min-h-[36px]"
         >
           Details
         </button>

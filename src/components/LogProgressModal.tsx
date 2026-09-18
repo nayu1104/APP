@@ -97,8 +97,8 @@ export const LogProgressModal: React.FC<LogProgressModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full max-w-lg rounded-2xl border border-neutral-800 bg-neutral-900 p-6 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-sm overflow-y-auto animate-in fade-in duration-200">
+      <div className="my-auto w-full max-w-lg max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-2xl border border-neutral-800 bg-neutral-900 p-5 sm:p-6 shadow-2xl">
         {/* Header */}
         <div className="flex items-start justify-between border-b border-neutral-800 pb-4">
           <div>
@@ -114,7 +114,7 @@ export const LogProgressModal: React.FC<LogProgressModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-neutral-400 hover:bg-neutral-800 hover:text-white transition-colors"
+            className="rounded-lg p-2 text-neutral-400 hover:bg-neutral-800 hover:text-white transition-colors min-h-[40px] min-w-[40px] flex items-center justify-center"
           >
             <X className="h-5 w-5" />
           </button>
@@ -221,25 +221,25 @@ export const LogProgressModal: React.FC<LogProgressModalProps> = ({
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-end gap-3 pt-2">
+          <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-3 pt-2">
             <button
               type="button"
               onClick={onClose}
               disabled={isSubmitting}
-              className="rounded-xl border border-neutral-800 bg-neutral-950 px-4 py-2.5 text-xs font-semibold text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors"
+              className="rounded-xl border border-neutral-800 bg-neutral-950 px-4 py-2.5 text-xs font-semibold text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors min-h-[44px] sm:min-h-0 flex items-center justify-center"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold text-neutral-950 transition-all shadow-md disabled:opacity-50 ${
+              className={`flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold text-neutral-950 transition-all shadow-md disabled:opacity-50 min-h-[44px] sm:min-h-0 ${
                 isMinimumTime
                   ? 'bg-amber-500 hover:bg-amber-400'
                   : 'bg-emerald-500 hover:bg-emerald-400'
               }`}
             >
-              <CheckCircle2 className="h-4 w-4" />
+              <CheckCircle2 className="h-4 w-4 shrink-0" />
               <span>
                 {isSubmitting
                   ? 'Recording...'

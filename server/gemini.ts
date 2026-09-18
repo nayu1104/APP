@@ -19,22 +19,51 @@ function getAiClient(): GoogleGenAI | null {
   return aiInstance;
 }
 
-const PRIMARY_MODEL = 'gemini-3.6-flash';
-const FALLBACK_MODEL = 'gemini-3.8-flash';
+// Recommended default model per official SDK instructions
+const PRIMARY_MODEL = 'gemini-3.8-flash';
+const FALLBACK_MODELS = ['gemini-3.1-flash-lite', 'gemini-flash-latest'];
+
+async function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 async function generateWithFallback(ai: GoogleGenAI, options: any) {
-  try {
-    return await ai.models.generateContent({
-      ...options,
-      model: PRIMARY_MODEL,
-    });
-  } catch (err) {
-    console.warn(`Gemini call with ${PRIMARY_MODEL} failed, retrying with ${FALLBACK_MODEL}:`, err);
-    return await ai.models.generateContent({
-      ...options,
-      model: FALLBACK_MODEL,
-    });
+  const modelsToTry = [PRIMARY_MODEL, ...FALLBACK_MODELS];
+  let lastError: unknown = null;
+
+  for (let i = 0; i < modelsToTry.length; i++) {
+    const model = modelsToTry[i];
+    // Attempt with backoff if experiencing high demand
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        return await ai.models.generateContent({
+          ...options,
+          model,
+        });
+      } catch (err: any) {
+        lastError = err;
+        const errMessage = String(err?.message || err);
+        const isTransient =
+          err?.status === 503 ||
+          err?.status === 429 ||
+          errMessage.includes('503') ||
+          errMessage.includes('high demand') ||
+          errMessage.includes('UNAVAILABLE') ||
+          errMessage.includes('429') ||
+          errMessage.includes('RESOURCE_EXHAUSTED');
+
+        if (isTransient && attempt === 0) {
+          await delay(1200);
+          continue;
+        }
+
+        // If high demand persists or failed, seamlessly advance to next model in cascade
+        break;
+      }
+    }
   }
+
+  throw lastError;
 }
 
 export interface DecomposeResult {

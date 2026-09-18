@@ -167,8 +167,8 @@ export default function App() {
         </div>
       )}
 
-      {/* Main Container */}
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-6 sm:py-8">
+      {/* Main Container with responsive mobile bottom spacing */}
+      <main className="flex-1 w-full max-w-6xl mx-auto px-3 sm:px-6 py-5 sm:py-8 pb-28 md:pb-10">
         {currentTab === 'focus' && (
           <TodayFocusView
             todayData={todayData}
@@ -245,8 +245,8 @@ export default function App() {
         onResetData={handleResetSeedData}
       />
 
-      {/* Footer */}
-      <footer className="border-t border-neutral-900 py-6 text-center text-xs font-mono text-neutral-400">
+      {/* Footer (hidden on small mobile or padded above bottom bar) */}
+      <footer className="border-t border-neutral-900 py-6 text-center text-xs font-mono text-neutral-400 mb-16 md:mb-0 px-4">
         <p>OneFocus • Radical Single-Tasking Engine • Commit to exactly ONE thing today</p>
       </footer>
     </div>

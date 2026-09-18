@@ -124,49 +124,49 @@ export const FocusTimer: React.FC<FocusTimerProps> = ({
           type="button"
           id="btn-toggle-minimum-time"
           onClick={handleToggleMinimumTime}
-          className={`w-full flex items-center justify-between rounded-xl border p-3 text-left transition-all ${
+          className={`w-full flex flex-col sm:flex-row sm:items-center justify-between gap-2 rounded-xl border p-3 text-left transition-all ${
             isMinimumTime
               ? 'border-amber-500/60 bg-amber-500/15 text-white shadow-[0_0_15px_rgba(245,158,11,0.15)]'
               : 'border-neutral-800 bg-neutral-950/70 text-neutral-300 hover:border-amber-500/40 hover:bg-neutral-950'
           }`}
         >
-          <div className="flex items-center gap-2.5">
-            <div className={`flex h-7 w-7 items-center justify-center rounded-lg ${
+          <div className="flex items-start sm:items-center gap-2.5">
+            <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg mt-0.5 sm:mt-0 ${
               isMinimumTime ? 'bg-amber-500 text-neutral-950' : 'bg-neutral-800 text-amber-400'
             }`}>
               <Zap className="h-4 w-4" />
             </div>
             <div>
-              <div className="text-xs font-bold text-white flex items-center gap-2">
+              <div className="text-xs font-bold text-white flex flex-wrap items-center gap-1.5 sm:gap-2">
                 <span>Can't do {defaultMinutes} min? Do Minimum Time (5 min)</span>
                 {isMinimumTime && (
-                  <span className="rounded bg-amber-400/20 text-amber-300 text-[10px] px-1.5 py-0.2 font-mono font-semibold">
+                  <span className="rounded bg-amber-400/20 text-amber-300 text-[10px] px-1.5 py-0.5 font-mono font-semibold">
                     ACTIVE
                   </span>
                 )}
               </div>
-              <div className="text-[11px] font-mono text-neutral-400">
+              <div className="text-[11px] font-mono text-neutral-400 mt-0.5">
                 {isMinimumTime
-                  ? 'Keeps your streak alive and earns +10 Shield points (10% pace)'
+                  ? 'Keeps your streak alive and awards +10 Shield points'
                   : 'Emergency option: complete just 5 min to keep your streak alive'}
               </div>
             </div>
           </div>
 
-          <span className="text-xs font-mono font-bold text-amber-400 shrink-0 ml-2">
-            {isMinimumTime ? 'Switch back to 50 min →' : 'Switch to 5 min →'}
+          <span className="text-xs font-mono font-bold text-amber-400 shrink-0 self-end sm:self-auto mt-1 sm:mt-0">
+            {isMinimumTime ? 'Switch to 50 min →' : 'Switch to 5 min →'}
           </span>
         </button>
       </div>
 
       {/* Timer Display */}
-      <div className="py-5 flex flex-col items-center justify-center">
-        <div className="font-mono text-5xl sm:text-6xl font-extrabold tracking-wider text-white select-none">
+      <div className="py-4 sm:py-5 flex flex-col items-center justify-center">
+        <div className="font-mono text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-wider text-white select-none">
           {formattedTime}
         </div>
 
         {/* Progress Bar */}
-        <div className="mt-4 w-full max-w-xs">
+        <div className="mt-4 w-full max-w-xs px-2 sm:px-0">
           <div className="h-1.5 w-full overflow-hidden rounded-full bg-neutral-800">
             <div
               className={`h-full transition-all duration-500 ${
@@ -177,21 +177,21 @@ export const FocusTimer: React.FC<FocusTimerProps> = ({
           </div>
           <div className="mt-1 flex justify-between text-[10px] font-mono text-neutral-500">
             <span>{Math.floor((totalTargetSecs - secondsLeft) / 60)}m done</span>
-            <span>{targetMinutes}m target ({isMinimumTime ? '+10 Shield pts' : '+100 Shield pts'})</span>
+            <span>{targetMinutes}m target ({isMinimumTime ? '+10 pts' : '+100 pts'})</span>
           </div>
         </div>
 
-        <div className="mt-2 text-xs font-mono text-neutral-400 text-center truncate max-w-sm">
+        <div className="mt-2 text-xs font-mono text-neutral-400 text-center truncate max-w-sm px-2">
           Locked onto: <span className="text-neutral-200">{taskName}</span>
         </div>
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-center gap-3">
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
         <button
           id="btn-timer-toggle"
           onClick={toggleTimer}
-          className={`flex items-center gap-2 rounded-xl px-7 py-2.5 text-sm font-bold transition-all active:scale-95 shadow-md ${
+          className={`flex-1 sm:flex-initial min-h-[44px] flex items-center justify-center gap-2 rounded-xl px-5 sm:px-7 py-2.5 text-xs sm:text-sm font-bold transition-all active:scale-95 shadow-md ${
             isActive
               ? 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700 border border-neutral-700'
               : isMinimumTime
@@ -207,7 +207,7 @@ export const FocusTimer: React.FC<FocusTimerProps> = ({
           ) : (
             <>
               <Play className="h-4 w-4 fill-current" />
-              <span>{isMinimumTime ? 'Start 5m Minimum Time' : `Start ${defaultMinutes}m Focus`}</span>
+              <span>{isMinimumTime ? 'Start 5m Minimum' : `Start ${defaultMinutes}m Focus`}</span>
             </>
           )}
         </button>
@@ -215,7 +215,7 @@ export const FocusTimer: React.FC<FocusTimerProps> = ({
         <button
           id="btn-timer-reset"
           onClick={resetTimer}
-          className="rounded-xl border border-neutral-800 bg-neutral-950 p-2.5 text-neutral-400 hover:text-white hover:border-neutral-700 transition-colors"
+          className="rounded-xl border border-neutral-800 bg-neutral-950 p-2.5 text-neutral-400 hover:text-white hover:border-neutral-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
           title="Reset Timer"
         >
           <RotateCcw className="h-4 w-4" />
@@ -224,9 +224,9 @@ export const FocusTimer: React.FC<FocusTimerProps> = ({
         {onLogWithTime && (
           <button
             onClick={() => onLogWithTime(targetMinutes, isMinimumTime)}
-            className="flex items-center gap-1.5 rounded-xl border border-neutral-800 bg-neutral-950 px-4 py-2.5 text-xs font-mono text-amber-400 hover:border-amber-500/50 hover:text-amber-300 transition-colors"
+            className="flex items-center justify-center gap-1.5 rounded-xl border border-neutral-800 bg-neutral-950 px-3.5 sm:px-4 py-2.5 text-xs font-mono text-amber-400 hover:border-amber-500/50 hover:text-amber-300 transition-colors min-h-[44px]"
           >
-            <CheckCircle2 className="h-3.5 w-3.5" />
+            <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
             <span>Log Finished</span>
           </button>
         )}

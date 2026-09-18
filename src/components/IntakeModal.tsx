@@ -160,8 +160,8 @@ export const IntakeModal: React.FC<IntakeModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm overflow-y-auto">
-      <div className="my-8 w-full max-w-2xl rounded-2xl border border-neutral-800 bg-neutral-900 p-6 sm:p-7 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-sm overflow-y-auto">
+      <div className="my-auto w-full max-w-2xl max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-2xl border border-neutral-800 bg-neutral-900 p-4 sm:p-7 shadow-2xl">
         {/* Header */}
         <div className="flex items-start justify-between border-b border-neutral-800 pb-4">
           <div>
@@ -177,7 +177,7 @@ export const IntakeModal: React.FC<IntakeModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-neutral-400 hover:bg-neutral-800 hover:text-white transition-colors"
+            className="rounded-lg p-2 text-neutral-400 hover:bg-neutral-800 hover:text-white transition-colors min-h-[40px] min-w-[40px] flex items-center justify-center"
           >
             <X className="h-5 w-5" />
           </button>
@@ -191,7 +191,7 @@ export const IntakeModal: React.FC<IntakeModalProps> = ({
         )}
 
         {/* Branch Selector Tabs */}
-        <div className="mt-6 grid grid-cols-2 gap-3">
+        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button
             type="button"
             onClick={() => setBranch('course')}
