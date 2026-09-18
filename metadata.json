@@ -1,0 +1,6 @@
+{
+  "name": "OneFocus",
+  "description": "Intelligent Single-Task Productivity Web App with radical single-tasking commitment, course ordinal tracking, and Gemini-powered project decomposition.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
